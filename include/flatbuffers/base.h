@@ -314,14 +314,14 @@ namespace flatbuffers {
 // Our default offset / size type, 32bit on purpose on 64bit systems.
 // Also, using a consistent offset type maintains compatibility of serialized
 // offset values between 32bit and 64bit systems.
-typedef uint32_t uoffset_t;
+typedef uint64_t uoffset_t;
 
 // Signed offsets for references that can go in both directions.
-typedef int32_t soffset_t;
+typedef int64_t soffset_t;
 
 // Offset/index used in v-tables, can be changed to uint8_t in
 // format forks to save a bit of space if desired.
-typedef uint16_t voffset_t;
+typedef uint64_t voffset_t;
 
 typedef uintmax_t largest_scalar_t;
 
@@ -332,7 +332,7 @@ typedef uintmax_t largest_scalar_t;
 #define FLATBUFFERS_MAX_ALIGNMENT 16
 
 /// @brief The length of a FlatBuffer file header.
-static const size_t kFileIdentifierLength = 4;
+static const size_t kFileIdentifierLength = 8;
 
 inline bool VerifyAlignmentRequirements(size_t align, size_t min_align = 1) {
   return (min_align <= align) && (align <= (FLATBUFFERS_MAX_ALIGNMENT)) &&
